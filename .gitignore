@@ -42,3 +42,7 @@ store-listing/screenshots/*.jpeg
 .env
 .env.*
 secrets.*
+
+# 推送脚本（用户专属工具，不入仓库）
+push-to-github.bat
+push-to-github.ps1

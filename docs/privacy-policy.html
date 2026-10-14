@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>书签云同步 — 隐私政策</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif; max-width: 800px; margin: 32px auto; padding: 0 16px; line-height: 1.7; color: #222; }
+  h1 { color: #6366F1; }
+  h2 { color: #4338CA; margin-top: 32px; border-bottom: 2px solid #EEF2FF; padding-bottom: 6px; }
+  .update { color: #999; font-size: 14px; }
+  ul { padding-left: 22px; }
+  li { margin: 4px 0; }
+  .ok { color: #16A34A; }
+  .no { color: #DC2626; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid #E5E7EB; padding: 8px 12px; text-align: left; }
+  th { background: #F3F4F6; }
+  code { background: #F3F4F6; padding: 2px 6px; border-radius: 3px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .box { background: #EEF2FF; padding: 12px 16px; border-left: 4px solid #6366F1; margin: 16px 0; border-radius: 4px; }
+</style>
+</head>
+<body>
+<h1>📚 书签云同步 — 隐私政策</h1>
+<p class="update">最后更新：2026 年 10 月 13 日</p>
+
+<h2>概述</h2>
+<p>「书签云同步」（Bookmark Cloud Sync）是一款浏览器扩展，<b>完全在你的设备和由你指定的 WebDAV 服务器之间运行</b>。本扩展由独立开发者维护，<b>不运营任何服务器</b>，<b>不收集任何遥测数据</b>。</p>
+
+<h2>我们收集什么</h2>
+<div class="box"><b>我们不收集任何东西。</b></div>
+<p>具体地，本扩展不会：</p>
+<ul>
+  <li><span class="no">❌</span> 收集任何使用统计</li>
+  <li><span class="no">❌</span> 上传你的书签内容到任何第三方服务器（只到你配置的 WebDAV 服务器）</li>
+  <li><span class="no">❌</span> 上传你的 WebDAV 账号密码到任何地方（密码只存在你本机浏览器的扩展存储里）</li>
+  <li><span class="no">❌</span> 跟踪你的浏览行为</li>
+  <li><span class="no">❌</span> 与任何第三方共享数据</li>
+  <li><span class="no">❌</span> 嵌入广告、分析脚本、远程脚本</li>
+</ul>
+
+<h2>数据流向</h2>
+<pre><code>你的浏览器 ──Basic Auth──► 你配置的 WebDAV 服务器
+   ▲                                │
+   └─────── 同步的书签 JSON ◄───────┘
+                ▲
+                │ （本扩展只在这条路径上工作）
+                │
+        无第三方参与</code></pre>
+<p>你的数据路径<b>只有两条端点</b>：</p>
+<ol>
+  <li><b>你的浏览器</b>（通过本扩展）</li>
+  <li><b>你配置的 WebDAV 服务器</b>（完全由你控制）</li>
+</ol>
+<p>本扩展<b>从不</b>把数据发到其他地方。</p>
+
+<h2>数据存储位置</h2>
+<p>本扩展只在以下位置存储数据，<b>全部在你本机</b>：</p>
+<table>
+  <tr><th>数据类型</th><th>存储位置</th><th>加密</th></tr>
+  <tr><td>你的配置（WebDAV 地址 / 用户名 / 应用密码）</td><td><code>chrome.storage.local</code></td><td>浏览器自动加密</td></tr>
+  <tr><td>同步状态（节点 GUID 映射、时间戳缓存）</td><td>同上</td><td>同上</td></tr>
+  <tr><td>设备标识（用于多端合并时区分来源）</td><td>同上</td><td>同上</td></tr>
+</table>
+
+<h2>权限说明</h2>
+<table>
+  <tr><th>权限</th><th>用途</th></tr>
+  <tr><td><code>bookmarks</code></td><td>读取 / 修改你浏览器中的书签</td></tr>
+  <tr><td><code>storage</code></td><td>在你浏览器本机保存配置与同步状态</td></tr>
+  <tr><td><code>alarms</code></td><td>实现定时自动同步</td></tr>
+  <tr><td><code>unlimitedStorage</code></td><td>支持同步大量书签（&gt;5 MB）</td></tr>
+  <tr><td><code>optional_host_permissions</code></td><td>访问你指定的 WebDAV 服务器域名</td></tr>
+</table>
+<p>本扩展<b>不使用</b>：</p>
+<ul>
+  <li><span class="no">❌</span> 任何 <code>tabs</code> / <code>webNavigation</code> / <code>activeTab</code> 权限</li>
+  <li><span class="no">❌</span> 任何 <code>&lt;all_urls&gt;</code> 通配 host permission</li>
+  <li><span class="no">❌</span> 任何远程脚本（<code>content_security_policy</code> 默认 <code>script-src 'self'</code>）</li>
+  <li><span class="no">❌</span> 任何 <code>webRequest</code> / <code>declarativeNetRequest</code></li>
+</ul>
+
+<h2>第三方服务</h2>
+<p>本扩展<b>不调用任何第三方服务</b>，包括但不限于：</p>
+<ul>
+  <li><span class="ok">✓</span> 不调用任何分析服务（无 Google Analytics、无 Sentry）</li>
+  <li><span class="ok">✓</span> 不调用任何 CDN（所有资源在扩展包内）</li>
+  <li><span class="ok">✓</span> 不调用任何远程代码加载</li>
+</ul>
+<p>唯一的网络请求目标<b>就是你配置的 WebDAV 服务器</b>。</p>
+
+<h2>儿童隐私</h2>
+<p>本扩展不针对 13 岁以下儿童设计，且不会有意收集儿童数据。</p>
+
+<h2>政策变更</h2>
+<p>如果本隐私政策有重大变更，我们会在以下渠道通知：</p>
+<ul>
+  <li>GitHub 仓库的 Release Notes</li>
+  <li>扩展更新日志</li>
+</ul>
+
+<h2>源代码</h2>
+<p>本扩展<b>完全开源</b>，所有代码公开可审计：</p>
+<ul>
+  <li>GitHub: <a href="https://github.com/junloongs/bookmark-cloud-sync">github.com/junloongs/bookmark-cloud-sync</a></li>
+</ul>
+
+<h2>联系方式</h2>
+<p>如果你对本隐私政策有任何疑问，请通过 GitHub Issue 联系我们：<br>
+<a href="https://github.com/junloongs/bookmark-cloud-sync/issues">github.com/junloongs/bookmark-cloud-sync/issues</a></p>
+
+<hr>
+<p class="update">最后更新：2026 年 10 月 13 日</p>
+</body>
+</html>

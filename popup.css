@@ -1,0 +1,94 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 344px;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: #333;
+  background: #f4f6fa;
+  padding: 12px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.title { font-size: 15px; font-weight: 600; color: #1f3a5f; }
+
+.dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #b9c2ce; display: inline-block;
+}
+.dot.good { background: #2ecc71; }
+.dot.bad { background: #e74c3c; }
+.dot.running { background: #3498db; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.4; } }
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(30, 50, 90, 0.08);
+}
+
+.card.warn {
+  background: #fdf6e3;
+  border: 1px solid #f0dcae;
+  color: #8a6d3b;
+}
+.card.warn a { color: #2f6fd0; }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 0;
+}
+.row .label { color: #7a8799; flex-shrink: 0; }
+.row .value {
+  text-align: right;
+  word-break: break-all;
+  max-width: 220px;
+}
+.row.detail { color: #6b7787; font-size: 12px; }
+.row.detail.ok { color: #27ae60; }
+.row.detail.err { color: #e74c3c; }
+
+.actions { display: flex; flex-direction: column; gap: 8px; }
+
+button {
+  width: 100%;
+  padding: 9px 0;
+  border: none;
+  border-radius: 8px;
+  background: #eef2f8;
+  color: #33475f;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+button:hover:not(:disabled) { background: #e2e9f4; }
+button:disabled { opacity: 0.55; cursor: default; }
+button.primary { background: #2f6fd0; color: #fff; font-weight: 600; }
+button.primary:hover:not(:disabled) { background: #265cb0; }
+
+.msg {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+.msg.ok { background: #e8f7ee; color: #1e7a46; }
+.msg.error { background: #fdecea; color: #b03a2e; }
+
+footer { margin-top: 10px; text-align: center; }
+footer a { color: #2f6fd0; text-decoration: none; font-size: 12px; }
+footer a:hover { text-decoration: underline; }
+
+.hidden { display: none !important; }

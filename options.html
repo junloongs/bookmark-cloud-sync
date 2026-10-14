@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>书签云同步 — 设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📚 书签云同步 — 设置</h1>
+
+    <div class="card">
+      <h2>WebDAV 服务器</h2>
+      <label>服务器地址
+        <input id="url" type="text" placeholder="https://dav.jianguoyun.com/dav/">
+      </label>
+      <label>用户名（坚果云账号邮箱）
+        <input id="username" type="text">
+      </label>
+      <label>密码（坚果云请使用「应用密码」，而非登录密码）
+        <input id="password" type="password" autocomplete="off">
+      </label>
+      <label>书签文件路径
+        <input id="path" type="text" placeholder="bookmark-sync/bookmarks.json">
+      </label>
+      <div class="hint">
+        完整文件地址 = 服务器地址 + 书签文件路径，例如
+        <code>https://dav.jianguoyun.com/dav/bookmark-sync/bookmarks.json</code>
+      </div>
+      <div class="btn-row">
+        <button id="btnTest">测试连接</button>
+        <button id="btnSave" class="primary">保存设置</button>
+      </div>
+      <div id="cfgMsg" class="msg hidden"></div>
+    </div>
+
+    <div class="card">
+      <h2>自动同步</h2>
+      <label class="check">
+        <input type="checkbox" id="autoSync"> 开启自动同步
+      </label>
+      <label>定时同步间隔（分钟；另外本地书签有改动时会在 15 秒后自动同步一次）
+        <input id="interval" type="number" min="1" value="30">
+      </label>
+      <label>自动同步方式
+        <select id="mode">
+          <option value="merge">双向合并（推荐）</option>
+          <option value="upload">仅上传（覆盖服务器）</option>
+          <option value="download">仅下载（覆盖本地）</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="card">
+      <h2>手动同步</h2>
+      <div class="hint">
+        合并同步 = 双向合并（推荐）。上传覆盖 = 用本浏览器书签完全覆盖服务器。
+        下载覆盖 = 用服务器书签完全覆盖本浏览器。
+      </div>
+      <div class="btn-row">
+        <button id="btnMerge" class="primary">⇅ 合并同步</button>
+        <button id="btnUpload">↑ 上传覆盖</button>
+        <button id="btnDownload">↓ 下载覆盖</button>
+      </div>
+      <div id="syncMsg" class="msg hidden"></div>
+    </div>
+
+    <div class="card">
+      <h2>维护</h2>
+      <div class="hint">
+        清除本地同步状态后，下次合并同步会重新与服务器书签自动配对（用于解决异常重复）。
+      </div>
+      <div class="btn-row">
+        <button id="btnReset">清除本地同步状态</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>诊断</h2>
+      <div class="hint">
+        如果测试连接 / 同步一直卡住，先看这里：扩展必须已获得服务器域名的访问权限才能发请求。
+        <br>点「保存设置」或「测试连接」时会自动弹授权框；如果没弹框，去
+        <code>chrome://extensions</code> → 本扩展的「详细信息」→「网站访问」处检查授权状态。
+      </div>
+      <div class="btn-row">
+        <button id="btnDiag">刷新权限状态</button>
+      </div>
+      <pre id="diagInfo" class="diag-pre">（点击上方按钮查看）</pre>
+    </div>
+
+    <div class="card">
+      <h2>浏览器兼容性</h2>
+      <div class="hint">
+        <b>Chrome / Edge 上扩展可正常工作。</b>夸克、360 极速 X、QQ 浏览器等基于 Chromium 的国产浏览器
+        通常会内置「网盘助手 / 密码管理」功能，对坚果云（dav.jianguoyun.com）做自动登录探测——
+        表现就是浏览器自己弹一个 WebDAV 账号密码框，过几秒探测完成就自动消失。
+      </div>
+      <div class="hint">
+        <b>这是浏览器内置行为，与本扩展无关</b>（扩展在 Edge / Chrome 上同样的代码不会触发）。
+        关闭方法：
+      </div>
+      <ul style="margin: 0 0 0 18px; line-height: 1.7; font-size: 13px; color: #555;">
+        <li><b>夸克浏览器</b>（最容易触发）：≡ → 设置 → 通用 → 密码管理箱 → <b>关闭「密码保存提示」</b>；再返回设置 → 隐私与安全 → <b>关闭「自动填充」</b></li>
+        <li><b>360 极速 X</b>：右上角菜单 → 设置 → 高级设置 → 内置功能 → 关闭「网盘小工具」</li>
+        <li><b>QQ 浏览器</b>：菜单 → 设置 → 高级 → 关闭「网盘助手」/「第三方账号自动登录」</li>
+      </ul>
+      <div class="hint">
+        如果关闭后扩展同步失败，请把诊断面板输出截给开发者。
+      </div>
+    </div>
+
+    <div class="hint footer">
+      密码仅保存在本机浏览器扩展存储中，只会直接发送给你所配置的 WebDAV 服务器，
+      不会上传到任何第三方。请勿在公共电脑上保存账号密码。
+    </div>
+  </div>
+
+  <script src="shim.js"></script>
+  <script src="lib.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

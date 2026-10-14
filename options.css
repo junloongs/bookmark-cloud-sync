@@ -1,0 +1,117 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #f4f6fa;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+h1 { font-size: 20px; color: #1f3a5f; margin-bottom: 16px; }
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(30, 50, 90, 0.08);
+}
+
+h2 { font-size: 15px; color: #1f3a5f; margin-bottom: 12px; }
+
+label {
+  display: block;
+  margin-bottom: 12px;
+  color: #55677f;
+  font-size: 13px;
+}
+
+label.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+}
+label.check input { width: auto; }
+
+input[type="text"], input[type="password"], input[type="number"], select {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px 10px;
+  border: 1px solid #d4dbe6;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #333;
+  background: #fff;
+}
+input:focus, select:focus { outline: none; border-color: #2f6fd0; }
+label.check input { margin-top: 0; }
+
+.hint {
+  font-size: 12px;
+  color: #7a8799;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+.hint code {
+  background: #eef2f8;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #44576d;
+}
+.hint.footer { text-align: center; margin-top: 8px; }
+
+.diag-pre {
+  background: #1e2a3a;
+  color: #d4dce8;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 12px;
+  font-family: "Cascadia Code", "Consolas", "Menlo", monospace;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+
+button {
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #eef2f8;
+  color: #33475f;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+button:hover:not(:disabled) { background: #e2e9f4; }
+button:disabled { opacity: 0.55; cursor: default; }
+button.primary { background: #2f6fd0; color: #fff; font-weight: 600; }
+button.primary:hover:not(:disabled) { background: #265cb0; }
+
+.msg {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: break-all;
+}
+.msg.ok { background: #e8f7ee; color: #1e7a46; }
+.msg.error { background: #fdecea; color: #b03a2e; }
+
+.hidden { display: none !important; }

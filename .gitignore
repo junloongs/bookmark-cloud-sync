@@ -1,0 +1,44 @@
+# ============================================================
+#  .gitignore for bookmark-cloud-sync
+# ============================================================
+
+# 打包好的 ZIP（每次发布重新生成）
+*.zip
+
+# Python 测试与打包脚本生成的临时文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE 与编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 系统临时
+*.tmp
+*.bak
+*.log
+
+# 用户工作区文件（不应进入仓库）
+.workbuddy/
+
+# 截图占位（用户自行上传 5 张商店截图）
+store-listing/screenshots/*.png
+store-listing/screenshots/*.jpg
+store-listing/screenshots/*.jpeg
+!store-listing/screenshots/README.md
+!store-listing/screenshots/.gitkeep
+
+# 私钥与凭据（防止误提交）
+*.pem
+*.key
+.env
+.env.*
+secrets.*
